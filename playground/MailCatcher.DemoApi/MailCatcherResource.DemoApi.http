@@ -1,0 +1,11 @@
+@MailCatcherResource.DemoApi_HostAddress = https://localhost:7164
+
+###
+
+POST https://localhost:7164/subscribe?email=test@test.com
+Accept: application/json
+
+###
+
+POST https://localhost:7164/unsubscribe?email=test@test.com
+Accept: application/json

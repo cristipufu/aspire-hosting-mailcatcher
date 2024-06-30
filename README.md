@@ -23,7 +23,34 @@ var api = builder.AddProject<Projects.MailCatcher_DemoApi>("api")
        .WithReference(mail);
 ```
 
+In the _Program.cs_ file of the `WebApi`, configure the `SmtpClient`:
+```charp
+builder.Services.AddSingleton<SmtpClient>(sp =>
+{
+    var smtpUri = new Uri(builder.Configuration.GetConnectionString("mailcatcher")!);
 
+    var smtpClient = new SmtpClient(smtpUri.Host, smtpUri.Port);
+
+    return smtpClient;
+});
+
+app.MapPost("/subscribe", async ([FromServices] SmtpClient smtpClient, string email) =>
+{
+    using var message = new MailMessage("hi@company.com", email)
+    {
+        Subject = "Welcome to our app!",
+        Body = "Thank you for subscribing!"
+    };
+
+    await smtpClient.SendMailAsync(message);
+});
+```
+
+```http
+POST /subscribe?email=test@test.com HTTP/1.1
+Host: localhost:7251
+Content-Type: application/json
+```
 ## Feedback & contributing
 
 Contributions are welcome! Whether you're fixing a bug, adding a new feature, or improving the documentation, please feel free to make a pull request.

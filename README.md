@@ -1,5 +1,8 @@
 # MailCatcher.Hosting library
 
+[![NuGet](https://img.shields.io/nuget/v/MailCatcher.Hosting)](https://www.nuget.org/packages/MailCatcher.Hosting)
+[![GitHub](https://img.shields.io/github/license/cristipufu/aspire-hosting-mailcatcher)](https://github.com/cristipufu/aspire-hosting-mailcatcher/blob/master/LICENSE)
+
 Provides extension methods and resource definitions for a .NET Aspire AppHost to configure a MailCatcher resource.
 
 ## Getting started
